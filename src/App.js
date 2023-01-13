@@ -7,8 +7,9 @@ import { AddIcon } from '@chakra-ui/icons';
 import ModalAdd from './Components/Modal';
 
 function App() {
-  // State open 
+  // State open : untuk mengatur buka/tutup modal, yang nantinya dikirim ke modal melalui props
   const [open, setOpen] = React.useState(false);
+  // State data : untuk menyimpan data todo, nantinya akan dapat diakses oleh modal/table lewat props untuk melakukan manipulasi data
   const [data, setData] = React.useState([
     {
       id: 1,
