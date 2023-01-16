@@ -28,18 +28,34 @@ function ModalEdit(props) {
             note: newNote,
             status: newStatus
         }
-        console.table(props.detail);
-        console.table(newData);
-        console.table({ ...props.detail, ...newData })
+        // console.table(props.detail);
+        // console.table(newData);
+        // console.table({ ...props.detail, ...newData })
+        let temp = [...props.data];
+        let idx = temp.findIndex((val) => val.id == props.detail.id);
+        temp[idx] = { ...props.detail, ...newData };
+        props.updateStateData(temp);
     }
 
-    React.useEffect(()=>{
+    // Mode 1 : Hanya akan ter trigger saat pertama kali website dirender
+    React.useEffect(() => {
+        // / fungsi yang mau dijalankan
+    }, []);
+
+    // Mode 2 : akan ter trigger setiap kali ada perubahan pada state atau props
+    React.useEffect(() => {
+        // / fungsi yang mau dijalankan
+    });
+
+    // Mode 3 : akan ter trigger setiap kali ada perubahan pada state atau props yang ditentukan
+    React.useEffect(() => {
+        // / fungsi yang mau dijalankan
         setNewDate(props.detail?.date);
         setNewTodo(props.detail?.todo);
         setNewLocation(props.detail?.location);
         setNewNote(props.detail?.note);
         setNewStatus(props.detail?.status);
-    });
+    }, [props.detail]);
 
     return <Modal isOpen={props.open}>
         <ModalOverlay />
@@ -55,7 +71,10 @@ function ModalEdit(props) {
                     </div>
                     <div className='form-group'>
                         <label>Todo</label>
-                        <input onChange={(e) => setNewTodo(e.target.value)} type="text" defaultValue={props.detail?.todo} className="form-control" />
+                        <input onChange={(e) => {
+                            console.log(e.target.value);
+                            setNewTodo(e.target.value);
+                        }} type="text" defaultValue={props.detail?.todo} className="form-control" />
                     </div>
                     <div className='form-group'>
                         <label>Location</label>

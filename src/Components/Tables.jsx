@@ -50,7 +50,12 @@ function TablePrint(props) {
         })
     }
     return <>
-        <ModalEdit detail={selected} open={open} onToggle={() => setOpen(!open)} />
+        <ModalEdit 
+        data={props.data}
+        updateStateData={props.updateStateData}
+        detail={selected} 
+        open={open} 
+        onToggle={() => setOpen(!open)} />
         <TableContainer>
             <Table variant="simple">
                 <Thead>
