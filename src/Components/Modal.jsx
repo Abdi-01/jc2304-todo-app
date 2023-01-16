@@ -12,12 +12,21 @@ import {
 } from '@chakra-ui/react';
 
 function ModalAdd(props) {
+    // Metode 1 get value from input with useRef
     const inDate = React.useRef(null);
     const inTodo = React.useRef(null);
     const inLocation = React.useRef(null);
     const inNote = React.useRef(null);
 
+    // Metode 2 dengan state dan onChange
+    const [date, setDate] = React.useState('');
+    const [todo, setTodo] = React.useState('');
+    const [location, setLocation] = React.useState('');
+    const [note, setNote] = React.useState('');
+
+
     const onBtnSave = () => {
+        
         // code here
         // alert(`${inDate.current.value} ${inTodo.current.value} ${inLocation.current.value} ${inNote.current.value}`);
         // Salin data dari state
@@ -31,7 +40,7 @@ function ModalAdd(props) {
             status: 'On going'
         });
         props.updateStateData(temp); // menyimpan data baru ke state data pda parent component
-        props.onToggle();
+        props.onToggle(); // Menutup modal kembali
     }
     return <Modal isOpen={props.buka} >
         <ModalOverlay />
@@ -43,22 +52,22 @@ function ModalAdd(props) {
                 <form >
                     <div className="form-group">
                         <label for="exampleInputPassword1">Date</label>
-                        <input type="date" ref={inDate} className="form-control" id="exampleInputPassword1"
+                        <input type="date" onChange={(element) => setDate(element.target.value)} ref={inDate} className="form-control" id="exampleInputPassword1"
                         />
                     </div>
                     <div className="form-group">
                         <label for="exampleInputPassword1">To Do</label>
-                        <input type="text" ref={inTodo} className="form-control" id="exampleInputPassword1"
+                        <input type="text" onChange={(element) => setTodo(element.target.value)} ref={inTodo} className="form-control" id="exampleInputPassword1"
                         />
                     </div>
                     <div className="form-group">
                         <label for="exampleInputPassword1">Location</label>
-                        <input type="text" ref={inLocation} className="form-control" id="exampleInputPassword1"
+                        <input type="text" onChange={(element) => setLocation(element.target.value)} ref={inLocation} className="form-control" id="exampleInputPassword1"
                         />
                     </div>
                     <div className="form-group">
                         <label for="exampleInputPassword1">Note</label>
-                        <textarea className="form-control" ref={inNote} id="exampleInputPassword1"
+                        <textarea className="form-control" onChange={(element) => setNote(element.target.value)} ref={inNote} id="exampleInputPassword1"
                         />
                     </div>
                 </form>
