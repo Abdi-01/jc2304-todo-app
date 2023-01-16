@@ -18,6 +18,17 @@ function ModalEdit(props) {
     const [newNote, setNewNote] = React.useState('');
     const [newStatus, setNewStatus] = React.useState('');
 
+    const onBtSave = () => {
+        let newData = {
+            date: newDate,
+            todo: newTodo,
+            location: newLocation,
+            note: newNote,
+            status: newStatus
+        }
+        console.table(props.detail);
+        console.table(newData);
+    }
     return <Modal isOpen={props.open}>
         <ModalOverlay />
         <ModalContent>
@@ -53,7 +64,7 @@ function ModalEdit(props) {
             </ModalBody>
             <ModalFooter>
                 <Button type="button" colorScheme="red" onClick={props.onToggle} >Cancel</Button>
-                <Button type="button" colorScheme="green" variant="outline">Save</Button>
+                <Button type="button" colorScheme="green" variant="outline" onClick={onBtSave}>Save</Button>
             </ModalFooter>
         </ModalContent>
     </Modal>;
