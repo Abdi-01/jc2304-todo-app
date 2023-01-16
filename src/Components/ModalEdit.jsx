@@ -30,15 +30,15 @@ function ModalEdit(props) {
                     </div>
                     <div className='form-group'>
                         <label>Location</label>
-                        <input type="text" className="form-control" />
+                        <input type="text" defaultValue={props.detail?.location} className="form-control" />
                     </div>
                     <div className='form-group'>
                         <label>Note</label>
-                        <input type="text" className="form-control" />
+                        <input type="text" defaultValue={props.detail?.note} className="form-control" />
                     </div>
                     <div className='form-group'>
                         <label>Status</label>
-                        <select className='form-select'>
+                        <select className='form-select' defaultValue={props.detail?.status}>
                             <option value="On Going">On going</option>
                             <option value="Done">Done</option>
                         </select>
