@@ -35,6 +35,8 @@ function ModalEdit(props) {
         let idx = temp.findIndex((val) => val.id == props.detail.id);
         temp[idx] = { ...props.detail, ...newData };
         props.updateStateData(temp);
+        props.onToggle();
+        props.setSelected(null); // mereset ulang props.detail/state selected pada component table
     }
 
     // Mode 1 : Hanya akan ter trigger saat pertama kali website dirender

@@ -54,6 +54,7 @@ function TablePrint(props) {
         data={props.data}
         updateStateData={props.updateStateData}
         detail={selected} 
+        setSelected={setSelected}
         open={open} 
         onToggle={() => setOpen(!open)} />
         <TableContainer>
