@@ -12,15 +12,18 @@ import {
     Button,
     ButtonGroup,
 } from '@chakra-ui/react'
+import ModalEdit from './ModalEdit';
 
 function TablePrint(props) {
 
     const onBtDelete = (id) => {
         let temp = [...props.data];
-        let idx = temp.findIndex((val,index) => val.id == id);
+        let idx = temp.findIndex((val, index) => val.id == id);
         temp.splice(idx, 1);
         props.updateStateData(temp);
     }
+
+    const [open, setOpen] = React.useState(false);
 
     const printData = () => {
         return props.data.map((value, index) => {
@@ -42,24 +45,27 @@ function TablePrint(props) {
             )
         })
     }
-    return <TableContainer>
-        <Table variant="simple">
-            <Thead>
-                <Tr>
-                    <Th>#</Th>
-                    <Th>Date</Th>
-                    <Th>To Do</Th>
-                    <Th>Location</Th>
-                    <Th>Note</Th>
-                    <Th>Status</Th>
-                    <Th>Action</Th>
-                </Tr>
-            </Thead>
-            <Tbody>
-                {printData()}
-            </Tbody>
-        </Table>
-    </TableContainer>;
+    return <>
+        <ModalEdit open={open} onToggle={() => setOpen(!open)} />
+        <TableContainer>
+            <Table variant="simple">
+                <Thead>
+                    <Tr>
+                        <Th>#</Th>
+                        <Th>Date</Th>
+                        <Th>To Do</Th>
+                        <Th>Location</Th>
+                        <Th>Note</Th>
+                        <Th>Status</Th>
+                        <Th>Action</Th>
+                    </Tr>
+                </Thead>
+                <Tbody>
+                    {printData()}
+                </Tbody>
+            </Table>
+        </TableContainer>;
+    </>
 }
 
 export default TablePrint;
