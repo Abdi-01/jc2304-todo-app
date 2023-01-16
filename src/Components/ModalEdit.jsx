@@ -22,7 +22,7 @@ function ModalEdit(props) {
                 <form>
                     <div className='form-group'>
                         <label>Date</label>
-                        <input type="date" className="form-control" />
+                        <input defaultValue={props.detail.date} type="date" className="form-control" />
                     </div>
                     <div className='form-group'>
                         <label>Todo</label>

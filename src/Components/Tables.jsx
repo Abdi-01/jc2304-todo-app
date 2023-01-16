@@ -24,6 +24,7 @@ function TablePrint(props) {
     }
 
     const [open, setOpen] = React.useState(false);
+    const [selected, setSelected] = React.useState(null);
 
     const printData = () => {
         return props.data.map((value, index) => {
@@ -38,7 +39,10 @@ function TablePrint(props) {
                     <Td>
                         <ButtonGroup>
                             <Button type="button" colorScheme="red" onClick={() => onBtDelete(value.id)}>Delete</Button>
-                            <Button type="button" colorScheme="yellow" onClick={() => setOpen(!open)}>Edit</Button>
+                            <Button type="button" colorScheme="yellow" onClick={() => {
+                                setOpen(!open);
+                                setSelected(value);
+                            }}>Edit</Button>
                         </ButtonGroup>
                     </Td>
                 </Tr>
@@ -46,7 +50,7 @@ function TablePrint(props) {
         })
     }
     return <>
-        <ModalEdit open={open} onToggle={() => setOpen(!open)} />
+        <ModalEdit detail={selected} open={open} onToggle={() => setOpen(!open)} />
         <TableContainer>
             <Table variant="simple">
                 <Thead>
