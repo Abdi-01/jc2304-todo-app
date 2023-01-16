@@ -12,6 +12,12 @@ import {
 } from '@chakra-ui/react';
 
 function ModalEdit(props) {
+    const [newDate, setNewDate] = React.useState('');
+    const [newTodo, setNewTodo] = React.useState('');
+    const [newLocation, setNewLocation] = React.useState('');
+    const [newNote, setNewNote] = React.useState('');
+    const [newStatus, setNewStatus] = React.useState('');
+
     return <Modal isOpen={props.open}>
         <ModalOverlay />
         <ModalContent>
@@ -22,32 +28,32 @@ function ModalEdit(props) {
                 <form>
                     <div className='form-group'>
                         <label>Date</label>
-                        <input defaultValue={props.detail?.date} type="date" className="form-control" />
+                        <input onChange={(e) => setNewDate(e.target.value)} defaultValue={props.detail?.date} type="date" className="form-control" />
                     </div>
                     <div className='form-group'>
                         <label>Todo</label>
-                        <input type="text" defaultValue={props.detail?.todo} className="form-control" />
+                        <input onChange={(e) => setNewTodo(e.target.value)} type="text" defaultValue={props.detail?.todo} className="form-control" />
                     </div>
                     <div className='form-group'>
                         <label>Location</label>
-                        <input type="text" defaultValue={props.detail?.location} className="form-control" />
+                        <input onChange={(e) => setNewLocation(e.target.value)} type="text" defaultValue={props.detail?.location} className="form-control" />
                     </div>
                     <div className='form-group'>
                         <label>Note</label>
-                        <input type="text" defaultValue={props.detail?.note} className="form-control" />
+                        <input onChange={(e) => setNewNote(e.target.value)} type="text" defaultValue={props.detail?.note} className="form-control" />
                     </div>
                     <div className='form-group'>
                         <label>Status</label>
-                        <select className='form-select' defaultValue={props.detail?.status}>
-                            <option value="On Going">On going</option>
+                        <select className='form-select' onChange={(e) => setNewStatus(e.target.value)} defaultValue={props.detail?.status}>
+                            <option value="On going">On going</option>
                             <option value="Done">Done</option>
                         </select>
                     </div>
                 </form>
             </ModalBody>
             <ModalFooter>
-            <Button type="button" colorScheme="red" onClick={props.onToggle} >Cancel</Button>
-                    <Button type="button" colorScheme="green" variant="outline">Save</Button> 
+                <Button type="button" colorScheme="red" onClick={props.onToggle} >Cancel</Button>
+                <Button type="button" colorScheme="green" variant="outline">Save</Button>
             </ModalFooter>
         </ModalContent>
     </Modal>;
