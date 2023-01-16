@@ -23,19 +23,19 @@ function ModalEdit(props) {
                 <form>
                     <div className='form-group'>
                         <label>Date</label>
-                        <input type="date" />
+                        <input type="date" className="form-control" />
                     </div>
                     <div className='form-group'>
                         <label>Todo</label>
-                        <input type="text" />
+                        <input type="text" className="form-control" />
                     </div>
                     <div className='form-group'>
                         <label>Location</label>
-                        <input type="text" />
+                        <input type="text" className="form-control" />
                     </div>
                     <div className='form-group'>
                         <label>Note</label>
-                        <input type="text" />
+                        <input type="text" className="form-control" />
                     </div>
                     <div className='form-group'>
                         <label>Status</label>
