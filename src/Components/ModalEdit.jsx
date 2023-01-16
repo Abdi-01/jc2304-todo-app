@@ -46,6 +46,10 @@ function ModalEdit(props) {
                     </div>
                 </form>
             </ModalBody>
+            <ModalFooter>
+            <Button type="button" colorScheme="red" onClick={props.onToggle} >Cancel</Button>
+                    <Button type="button" colorScheme="green" variant="outline">Save</Button> 
+            </ModalFooter>
         </ModalContent>
     </Modal>;
 }

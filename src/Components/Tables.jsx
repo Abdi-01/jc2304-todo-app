@@ -38,7 +38,7 @@ function TablePrint(props) {
                     <Td>
                         <ButtonGroup>
                             <Button type="button" colorScheme="red" onClick={() => onBtDelete(value.id)}>Delete</Button>
-                            <Button type="button" colorScheme="yellow">Edit</Button>
+                            <Button type="button" colorScheme="yellow" onClick={() => setOpen(!open)}>Edit</Button>
                         </ButtonGroup>
                     </Td>
                 </Tr>
