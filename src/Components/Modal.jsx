@@ -24,13 +24,14 @@ function ModalAdd(props) {
         let temp = [...props.data];
         temp.push({
             id: temp[temp.length - 1].id + 1,
-            date:inDate.current.value,
-            todo:inTodo.current.value,
-            location:inLocation.current.value,
-            note:inNote.current.value,
-            status:'On going'
+            date: inDate.current.value,
+            todo: inTodo.current.value,
+            location: inLocation.current.value,
+            note: inNote.current.value,
+            status: 'On going'
         });
         props.updateStateData(temp); // menyimpan data baru ke state data pda parent component
+        props.onToggle();
     }
     return <Modal isOpen={props.buka} >
         <ModalOverlay />
