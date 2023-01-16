@@ -12,6 +12,8 @@ import {
 } from '@chakra-ui/react';
 
 function ModalEdit(props) {
+    // const { detail } = props;
+    // console.log(detail);
     const [newDate, setNewDate] = React.useState('');
     const [newTodo, setNewTodo] = React.useState('');
     const [newLocation, setNewLocation] = React.useState('');
@@ -28,7 +30,17 @@ function ModalEdit(props) {
         }
         console.table(props.detail);
         console.table(newData);
+        console.table({ ...props.detail, ...newData })
     }
+
+    React.useEffect(()=>{
+        setNewDate(props.detail?.date);
+        setNewTodo(props.detail?.todo);
+        setNewLocation(props.detail?.location);
+        setNewNote(props.detail?.note);
+        setNewStatus(props.detail?.status);
+    });
+
     return <Modal isOpen={props.open}>
         <ModalOverlay />
         <ModalContent>
