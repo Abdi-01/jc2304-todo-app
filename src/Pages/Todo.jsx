@@ -4,7 +4,7 @@ import TablePrint from '../Components/Tables';
 function Todo(props) {
    
     return <div>
-        <TablePrint data={props.data} />
+        <TablePrint data={props.data} updateStateData={props.updateStateData} />
     </div>;
 }
 

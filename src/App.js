@@ -65,7 +65,7 @@ function App() {
         updateStateData={setData} />
       <div className='container shadow rounded-3 p-3'>
         {/* Table */}
-        <Todo data={data} />
+        <Todo data={data} updateStateData={setData} />
       </div>
     </div>
   );

@@ -15,6 +15,13 @@ import {
 
 function TablePrint(props) {
 
+    const onBtDelete = (id) => {
+        let temp = [...props.data];
+        let idx = temp.findIndex((val,index) => val.id == id);
+        temp.splice(idx, 1);
+        props.updateStateData(temp);
+    }
+
     const printData = () => {
         return props.data.map((value, index) => {
             return (
@@ -27,7 +34,7 @@ function TablePrint(props) {
                     <Td>{value.status}</Td>
                     <Td>
                         <ButtonGroup>
-                            <Button type="button" colorScheme="red" >Delete</Button>
+                            <Button type="button" colorScheme="red" onClick={() => onBtDelete(value.id)}>Delete</Button>
                             <Button type="button" colorScheme="yellow">Edit</Button>
                         </ButtonGroup>
                     </Td>
