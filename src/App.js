@@ -60,6 +60,7 @@ function App() {
       </Box>
       {/* Modal */}
       <ModalAdd buka={open}
+        data={data}
         onToggle={() => setOpen(!open)}
         updateStateData={setData} />
       <div className='container shadow rounded-3 p-3'>

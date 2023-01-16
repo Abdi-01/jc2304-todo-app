@@ -17,11 +17,21 @@ function ModalAdd(props) {
     const inLocation = React.useRef(null);
     const inNote = React.useRef(null);
 
-    const onBtnSave=()=>{
+    const onBtnSave = () => {
         // code here
-        alert(inDate.current.value);
-        // props.updateStateData(); // menyimpan data baru ke state data pda parent component
-      }
+        // alert(`${inDate.current.value} ${inTodo.current.value} ${inLocation.current.value} ${inNote.current.value}`);
+        // Salin data dari state
+        let temp = [...props.data];
+        temp.push({
+            id: temp[temp.length - 1].id + 1,
+            date:inDate.current.value,
+            todo:inTodo.current.value,
+            location:inLocation.current.value,
+            note:inNote.current.value,
+            status:'On going'
+        });
+        props.updateStateData(temp); // menyimpan data baru ke state data pda parent component
+    }
     return <Modal isOpen={props.buka} >
         <ModalOverlay />
         <ModalContent>
