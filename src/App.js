@@ -5,12 +5,27 @@ import Todo from './Pages/Todo';
 import { Box, Button, Container, Text } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 import ModalAdd from './Components/Modal';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { updateTodoAction } from './actions/todoAction';
 
 function App() {
+  const dispatch = useDispatch();
   // State open : untuk mengatur buka/tutup modal, yang nantinya dikirim ke modal melalui props
   const [open, setOpen] = React.useState(false);
   // State data : untuk menyimpan data todo, nantinya akan dapat diakses oleh modal/table lewat props untuk melakukan manipulasi data
   const [data, setData] = React.useState([]);
+
+  React.useEffect(() => {
+    axios.get("http://localhost:2000/todo")
+      .then((response) => {
+        console.table(response.data);
+        dispatch(updateTodoAction(response.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }, []);
 
   return (
     <div>
