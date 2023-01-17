@@ -5,14 +5,13 @@ import Todo from './Pages/Todo';
 import { Box, Button, Container, Text } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 import ModalAdd from './Components/Modal';
-import { useSelector } from 'react-redux';
+
 function App() {
   // State open : untuk mengatur buka/tutup modal, yang nantinya dikirim ke modal melalui props
   const [open, setOpen] = React.useState(false);
   // State data : untuk menyimpan data todo, nantinya akan dapat diakses oleh modal/table lewat props untuk melakukan manipulasi data
   const [data, setData] = React.useState([]);
-  const dataTodo = useSelector((state) => state.todoReducer.dataTodo);
-  console.log(dataTodo);
+
   return (
     <div>
       {/* Navbar */}
@@ -32,7 +31,7 @@ function App() {
         updateStateData={setData} />
       <div className='container shadow rounded-3 p-3'>
         {/* Table */}
-        <Todo updateStateData={setData} />
+        <Todo />
       </div>
     </div>
   );

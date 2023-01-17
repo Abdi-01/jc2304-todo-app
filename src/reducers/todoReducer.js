@@ -45,6 +45,8 @@ export const todoReducer = (state = INITIAL_STATE, action) => {
         case "UPDATE_TODO":
             // memeprbarui data pada state dengan data yang dikirim oleh action.payload
             return { ...state, dataTodo: action.payload }
+        case "RESET_TODO":
+            return { ...state, dataTodo: [] }
         default:
             return state;
     }

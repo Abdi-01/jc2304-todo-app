@@ -10,7 +10,8 @@ import {
     ButtonGroup,
     Button,
 } from '@chakra-ui/react';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { updateTodoAction } from '../actions/todoAction';
 function ModalEdit(props) {
     // const { detail } = props;
     // console.log(detail);
@@ -20,6 +21,8 @@ function ModalEdit(props) {
     const [newNote, setNewNote] = React.useState('');
     const [newStatus, setNewStatus] = React.useState('');
 
+    const dataTodo = useSelector((state) => state.todoReducer.dataTodo);
+    const dispatch = useDispatch();
     const onBtSave = () => {
         let newData = {
             date: newDate,
@@ -31,10 +34,10 @@ function ModalEdit(props) {
         // console.table(props.detail);
         // console.table(newData);
         // console.table({ ...props.detail, ...newData })
-        let temp = [...props.data];
+        let temp = [...dataTodo];
         let idx = temp.findIndex((val) => val.id == props.detail.id);
         temp[idx] = { ...props.detail, ...newData };
-        props.updateStateData(temp);
+        dispatch(updateTodoAction(temp));
         props.onToggle();
         props.setSelected(null); // mereset ulang props.detail/state selected pada component table
     }

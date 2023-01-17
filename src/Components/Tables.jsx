@@ -13,17 +13,27 @@ import {
     ButtonGroup,
 } from '@chakra-ui/react'
 import ModalEdit from './ModalEdit';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateTodoAction } from '../actions/todoAction';
 
 function TablePrint(props) {
-  
+
     const dataTodo = useSelector((state) => state.todoReducer.dataTodo);// mengambil data dari globalStore reducer -->todoReducer
-  
+    const dispatch = useDispatch(); // untuk menjalankan fungsi action redux agar memperbarui data ke reducer
+
+    // Membuat fungsi action --> nanti dipindah ke file action
+    // const updateTodoAction = (data) => {
+    //     return {
+    //         type: "UPDATE_TODO", // memilih tindakan yang akan dilakukan pada data reducer
+    //         payload: data // data yang ingin disimpan ke globalStore reducer
+    //     }
+    // }
+
     const onBtDelete = (id) => {
-        let temp = [...props.data];
+        let temp = [...dataTodo];
         let idx = temp.findIndex((val, index) => val.id == id);
         temp.splice(idx, 1);
-        props.updateStateData(temp);
+        dispatch(updateTodoAction(temp));
     }
 
     const [open, setOpen] = React.useState(false);

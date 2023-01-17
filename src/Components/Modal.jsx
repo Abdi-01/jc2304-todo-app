@@ -10,6 +10,8 @@ import {
     ButtonGroup,
     Button,
 } from '@chakra-ui/react';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateTodoAction } from '../actions/todoAction';
 
 function ModalAdd(props) {
     // Metode 1 get value from input with useRef
@@ -24,13 +26,15 @@ function ModalAdd(props) {
     const [location, setLocation] = React.useState('');
     const [note, setNote] = React.useState('');
 
-
+    const dataTodo = useSelector((state) => state.todoReducer.dataTodo);
+    const dispatch = useDispatch();
+    
     const onBtnSave = () => {
-        
+
         // code here
         // alert(`${inDate.current.value} ${inTodo.current.value} ${inLocation.current.value} ${inNote.current.value}`);
         // Salin data dari state
-        let temp = [...props.data];
+        let temp = [...dataTodo];
         temp.push({
             id: temp[temp.length - 1].id + 1,
             date: inDate.current.value,
@@ -39,7 +43,7 @@ function ModalAdd(props) {
             note: inNote.current.value,
             status: 'On going'
         });
-        props.updateStateData(temp); // menyimpan data baru ke state data pda parent component
+        dispatch(updateTodoAction(temp));
         props.onToggle(); // Menutup modal kembali
     }
     return <Modal isOpen={props.buka} >
