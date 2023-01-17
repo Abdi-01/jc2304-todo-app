@@ -5,47 +5,14 @@ import Todo from './Pages/Todo';
 import { Box, Button, Container, Text } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 import ModalAdd from './Components/Modal';
-
+import { useSelector } from 'react-redux';
 function App() {
   // State open : untuk mengatur buka/tutup modal, yang nantinya dikirim ke modal melalui props
   const [open, setOpen] = React.useState(false);
   // State data : untuk menyimpan data todo, nantinya akan dapat diakses oleh modal/table lewat props untuk melakukan manipulasi data
-  const [data, setData] = React.useState([
-    {
-      id: 1,
-      date: "20-11-2021",
-      todo: "Make Todo App",
-      location: "https://media.istockphoto.com/photos/protective-face-masks-and-hand-sanitizers-on-the-desks-according-to-picture-id1290836478",
-      note: "Prepare VSCode, Node js and CRA, Axios",
-      status: "Done"
-    },
-    {
-      id: 2,
-      date: "2021-11-26",
-      todo: "Berlibur",
-      location: "https://pict-b.sindonews.net/dyn/620/pena/news/2021/09/18/156/544508/3-pantai-cantik-di-banten-yang-menarik-buat-plesiran-fuw.jpg",
-      note: "Camping",
-      status: "on going",
-    },
-    {
-      id: 3,
-      date: "2021-11-30",
-      todo: "Futsal",
-      location: "",
-      note: "jam 09.00",
-      status: "on going",
-    },
-    {
-      id: 4,
-      date: "2021-11-30",
-      todo: "Futsal B",
-      location: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScxYBCtVC_PCsJHbaTov5uf9tIuu6TLyKcvFUXdFCfoc77ctTDlmcsOnm8n7E-foV5qO8&usqp=CAU",
-      note: "jam 16.00",
-      status: "on going",
-    }
-  ]);
-
-
+  const [data, setData] = React.useState([]);
+  const dataTodo = useSelector((state) => state.todoReducer.dataTodo);
+  console.log(dataTodo);
   return (
     <div>
       {/* Navbar */}
@@ -65,7 +32,7 @@ function App() {
         updateStateData={setData} />
       <div className='container shadow rounded-3 p-3'>
         {/* Table */}
-        <Todo data={data} updateStateData={setData} />
+        <Todo updateStateData={setData} />
       </div>
     </div>
   );
